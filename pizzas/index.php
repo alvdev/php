@@ -13,21 +13,21 @@ require_once './controller.php';
 
     <div class="container">
         <div class="row">
-            <?php foreach ($pizzas as $pizza) { ?>
+            <?php foreach ($pizzas as $pizza): ?>
                 <div class="card z-depth-0">
                     <div class="card-content center">
                         <h3><?= htmlspecialchars($pizza['title']); ?></h3>
                         <ul>
-                        <?php foreach ($ingredients as $ingredient) { ?>
+                        <?php foreach ($ingredients as $ingredient): ?>
                             <li><?= $ingredient ?></li>
-                        <?php } ?>
+                        <?php endforeach ?>
                         </ul>
                         <div class="card-action right-align">
                             <a href="#" class="brand-text">More info</a>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php endforeach ?>
         </div>
     </div>
 
