@@ -1,6 +1,9 @@
 <?php
+
+include './config.php';
+
 // db db connection
-$conn = mysqli_connect('localhost', 'root', 'pass', '0_pizza');
+$conn = mysqli_connect(SERVER, DBUSER, DBPASS, DBNAME);
 mysqli_set_charset($conn, 'UTF8');
 
 // check db connection
@@ -9,10 +12,10 @@ if (!$conn) {
 }
 
 // db sql query
-$query = "SELECT title, ingredients, id FROM pizzas";
+$sql = "SELECT title, ingredients, id FROM pizzas";
 
 // db query result
-$result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $sql);
 
 // fetch resulting rows as an array
 $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -21,6 +24,6 @@ $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
 mysqli_free_result($result);
 mysqli_close($conn);
 
-echo '<pre>';
-print_r($pizzas);
-echo '</pre>';
+//echo '<pre>';
+//print_r($pizzas);
+//echo '</pre>';

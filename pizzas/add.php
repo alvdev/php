@@ -1,6 +1,6 @@
 <?php
 
-include './db.php';
+include './src/db.php';
 
 // Declare variable to avoid undefined value input errors
 $email = $title = $ingredients = '';
@@ -49,8 +49,27 @@ if (isset($_POST['submit'])) {
     if(array_filter($errors)) {
         echo 'errors in the form';
     } else {
-        //echo 'Form is valid';
+        $conn = mysqli_connect(SERVER, DBUSER, DBPASS, DBNAME);
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $title = mysqli_real_escape_string($conn, $_POST['title']);
+        $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
+
+        // echo 'Form is valid';
         header('Location: index.php');
+
+        // sql to insert new values
+        $sql = "INSERT INTO pizzas(title, email, ingredients) VALUES('$title', '$email', '$ingredients')";
+
+        // save to db and check
+        if (mysqli_query($conn, $sql)) {
+            // success
+            header('Location: index.php');
+        } else {
+            // error
+            echo 'query error: ' ;
+        }
+
+        mysqli_close($conn);
     }
 };
 
