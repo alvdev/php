@@ -20,6 +20,13 @@
             margin: 2rem auto;
             padding: 2rem;
         }
+
+        .pizza {
+            display: block;
+            margin: 0px auto -40px;
+            position: relative;
+            top: -30px;
+        }
     </style>
 </head>
 
