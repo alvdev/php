@@ -1,6 +1,6 @@
 <?php
 
-include './src/db.php';
+include './models/db.php';
 
 // Declare variable to avoid undefined value input errors
 $email = $title = $ingredients = '';
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
 
 <section class="container grey-text">
     <h4 class="center">Add a pizza</h4>
-    <form class="white" action="add.php" method="POST">
+    <form class="white" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
         <label for="email">Your email:</label>
         <input type="text" name="email" id="email" value="<?= htmlspecialchars($email) ?>">
         <div class="red-text"><?= $errors['email'] ?></div>
