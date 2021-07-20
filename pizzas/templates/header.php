@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+$name = $_SESSION['name'] ?? 'Guest';
+
+if ( $_SERVER['QUERY_STRING'] == 'noname' ) {
+    unset($_SESSION['name']);
+    // does the same thing
+    session_unset();
+}
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +48,8 @@
     <nav class="white z-depth-0">
         <div class="container">
             <a href="index.php" class="brand-logo brand-text">Pizza ideas</a>
-            <ul id="nav-mobile" class="right hide-on-small-and-down">
+            <ul id="nav-mobile" class="right hide-on-small-and-down grey-text">
+                <li>Hello <?= htmlspecialchars($name) ?></li>
                 <li><a href="add.php" class="btn brand z-depth-0">Add a pizza</a></li>
             </ul>
         </div>

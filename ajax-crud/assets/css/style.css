@@ -1,0 +1,84 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(https://images.pexels.com/photos/533923/pexels-photo-533923.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260);
+    background-size: cover;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.container-form {
+    background-color: rgb(255 255 255 / 50%);
+    backdrop-filter: blur(6px);
+    width: 80%;
+    position: absolute;
+    box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+}
+
+form {
+    padding: 2rem;
+    display: grid;
+    align-items: flex-end;
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+    gap: 2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+input,
+button {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid lightblue;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+button {
+    cursor: pointer;
+    background-color: darkcyan;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 0.8rem;
+    border: none;
+    box-shadow: 0 0 2px rgb(0 0 0 / 20%);
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px lightblue;
+}
+
+#message {
+    color: #a47652;
+    font-weight: bold;
+    font-size: 0rem;
+    border-radius: 0 0 8px 8px;
+    background-color: rgb(255 255 255 / 30%);
+    text-align: center;
+    visibility: hidden;
+    padding: 0;
+    height: max-content;
+    overflow: hidden;
+    transition: ease .5s;
+}
+
+#message.visible {
+    display: block;
+    font-size: 2rem;
+    visibility: visible;
+    height: auto;
+    padding: 2rem;
+    transition: ease .5s;
+}
