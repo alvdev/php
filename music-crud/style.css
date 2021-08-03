@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 96%;
+    margin: 0 auto;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 8px;
+}
+
+table thead tr {
+    background-color: #222;
+    color: #fff;
+}
+
+table tr {
+    background-color: lightgoldenrodyellow;
+    box-shadow: 0 0 0px 2px white inset;
+    border-radius: 8px;
+}
+
+table tr:nth-child(even) {
+    background-color: #eee;
+}
+
+table td {
+    padding: 1rem 1.5rem;
+    white-space: nowrap; 
+}
+
+table td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+table td:last-child {
+    border-radius: 0 10px 10px 0;
+}
