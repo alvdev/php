@@ -1,55 +1,43 @@
-<?php
+<?php include_once 'partials/header.php' ?>
 
-// mysqli connect
-$conn = mysqli_connect('localhost', 'root', 'pass', 'php-music-crud');
-mysqli_set_charset($conn, 'UTF8');
-
-$sql = "SELECT * FROM products";
-
-$result = mysqli_query($conn, $sql);
-
-
-$row = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-echo '<pre>';
-print_r($row);
-echo '</pre>';
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music products CRUD</title>
-
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<main>
+    
     <h1>Music products CRUD</h1>
+    
+    <p>
+        <a href="create.php" class="btn create">Create new product</a>
+    </p>
+    
     <table>
         <thead>
             <tr>
+                <td>#</td>
                 <td>Title</td>
                 <td>Description</td>
                 <td>Image</td>
                 <td>Price</td>
                 <td>Date</td>
+                <td>Action</td>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($row as $product): ?>
+            <?php foreach ($products as $product): ?>
                 <tr>
+                    <td><?= $product['id'] ?></td>
                     <td><?= $product['title'] ?></td>
                     <td><?= $product['description'] ?></td>
                     <td><?= $product['image'] ?></td>
                     <td><?= $product['price'] ?></td>
                     <td><?= $product['created_date'] ?></td>
+                    <td>
+                        <a href="edit.php" class="btn edit">Edit</a>
+                        <a href="delete.php" class="btn delete">Delete</a>
+                    </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
     </table>
-</body>
-</html>
+
+</main>
+
+<?php include_once 'partials/footer.php' ?>

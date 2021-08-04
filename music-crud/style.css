@@ -2,12 +2,88 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    height: 100%;
 }
 
 body {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
     width: 96%;
     margin: 0 auto;
+    font-size: 1rem;
+}
+
+p {
+    margin: 1rem 0;
+}
+
+label {
+    display: block;
+    text-transform: uppercase;
+    font-size: .7rem;
+    font-weight: 500;
+    margin-bottom: .4rem;
+}
+
+input:not([type="file"]), textarea {
+    width: 100%;
+    border: 2px solid #ddd;
+    padding: .5rem;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn,
+button {
+    border: none;
+    background-color: hsl(0, 0%, 0%);
+    color: #fff;
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: .7rem;
+    text-decoration: none;
+    letter-spacing: .5px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.btn.create,
+button.create {
+    background-color: #117700;
+}
+
+.btn.edit,
+button.edit {
+    background-color: #0022cc;
+}
+
+.btn.delete,
+button.delete {
+    background-color: #a00;
+}
+
+.btn:hover,
+button:hover {
+    cursor: pointer;
+    opacity: .8;
+    transform: scale(.99);
+}
+
+/* Main content */
+
+main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 table {
@@ -41,4 +117,10 @@ table td:first-child {
 
 table td:last-child {
     border-radius: 0 10px 10px 0;
+}
+
+/* Form */
+
+form > div {
+    margin-bottom: 1rem;
 }
