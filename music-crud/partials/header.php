@@ -1,26 +1,3 @@
-<?php
-
-// mysqli db connect version
-/* $conn = mysqli_connect('localhost', 'root', 'pass', 'php-music-crud');
-mysqli_set_charset($conn, 'UTF8');
-
-$sql = "SELECT * FROM products";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_all($result, MYSQLI_ASSOC); */
-
-// PDO db connect version
-$conn = new PDO('mysql:host=localhost;dbname=php-music-crud;charset=utf8', 'root', 'pass');
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-$sql = $conn->prepare('SELECT * FROM products ORDER BY created_date DESC');
-$sql->execute();
-
-$products = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-$conn->clos
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,3 +9,7 @@ $conn->clos
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav>
+        <a href="index.php">Home</a>
+        <a href="create.php">Create</a>
+    </nav>

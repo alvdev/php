@@ -1,4 +1,18 @@
-<?php include_once 'partials/header.php' ?>
+<?php 
+
+include_once 'partials/header.php';
+
+$conn = new PDO('mysql:host=localhost; dbname=php-music-crud; charset=utf8mb4', 'root', 'pass');
+
+$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+$sql = $conn->prepare("SELECT * FROM products ORDER BY created_date DESC");
+
+$sql->execute();
+
+$products = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+?>
 
 <main>
     
