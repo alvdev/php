@@ -14,6 +14,15 @@ body {
     font-size: 1rem;
 }
 
+a {
+    text-decoration: none;
+    color: #4169e1
+}
+
+a:hover {
+    opacity: .9;
+}
+
 p {
     margin: 1rem 0;
 }
@@ -31,11 +40,14 @@ input:not([type="file"]), textarea {
     border: 2px solid #ddd;
     padding: .5rem;
     border-radius: 4px;
+    font-size: 1rem;
 }
 
 textarea {
     resize: vertical;
 }
+
+/* Common styles */
 
 .btn,
 button {
@@ -52,19 +64,10 @@ button {
     display: inline-block;
 }
 
-.btn.create,
-button.create {
-    background-color: #117700;
-}
-
-.btn.edit,
-button.edit {
-    background-color: #0022cc;
-}
-
-.btn.delete,
-button.delete {
-    background-color: #a00;
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: .8rem;
+    letter-spacing: 1px;
 }
 
 .btn:hover,
@@ -74,10 +77,29 @@ button:hover {
     transform: scale(.99);
 }
 
-/* Main content */
+.bg-green {
+    background-color: #117700;
+}
 
+.bg-blue {
+    background-color: royalblue;;
+}
+
+.bg-red {
+    background-color: #a00;
+}
+
+/* Top content */
+nav {
+    background-color: #000;
+    width: 96%;
+    margin: 2% auto;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* Main content */
 main {
-    text-align: center;
     margin: 0 auto;
     width: 96%;
 }
@@ -117,7 +139,26 @@ table td:last-child {
 }
 
 /* Form */
-
 form > div {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Messages */
+.alert {
+    padding: .75rem 1rem;
+    margin: 2rem 0;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+}
+
+.alert.error {
+    background-color: #ffcccc;
+    border-color: #900;
+    color: #900;
+}
+
+.alert li {
+    list-style: none;
+    padding: .25rem;
 }

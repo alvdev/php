@@ -19,7 +19,7 @@ $products = $sql->fetchAll(PDO::FETCH_ASSOC);
     <h1>Music products CRUD</h1>
     
     <p>
-        <a href="create.php" class="btn create">Create new product</a>
+        <a href="create.php" class="btn bg-green">Create new product</a>
     </p>
     
     <table>
@@ -44,8 +44,8 @@ $products = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $product['price'] ?></td>
                     <td><?= $product['created_date'] ?></td>
                     <td>
-                        <a href="edit.php" class="btn edit">Edit</a>
-                        <a href="delete.php" class="btn delete">Delete</a>
+                        <a href="edit.php" class="btn bg-blue">Edit</a>
+                        <a href="delete.php" class="btn bg-red">Delete</a>
                     </td>
                 </tr>
             <?php endforeach ?>
