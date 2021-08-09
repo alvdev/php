@@ -4,17 +4,31 @@ include_once 'partials/header.php';
 
 $errors = [];
 
+function randStr($n)
+{
+    $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $str = '';
+
+    for ($i = 0; $i < $n; $i++) {
+        $index = rand(0, strlen($chars) - 1);
+        $str .= $chars[$index];
+    }
+
+    return $str;
+}
+
 // Define empty variables to prevent undefined variables input value errors
 $title = $price = $description = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $image = $_FILES['image'] ?? null;
+    $image = $_FILES['image'];
     $title = $_POST['title'];
     $description = $_POST['description'];
     $price = $_POST['price'] ?: 0;
     $date = date('Y-m-d H:i:s');
 
     // Errors control
+    if (!$image) $errors[] = 'Product image is required';
     if (!$title) $errors[] = 'Product title is required';
     if (!$price) $errors[] = 'Product price is required';
     if (!$description) $errors[] = 'Product description is required';
@@ -22,8 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Submit form only if there are no errors to have no side effects
     if (empty($errors)) {
         if ($image) {
+            $imagePath = 'images/' . randStr(8) . '/' . $image['name'];
             is_dir('images') ?: mkdir('images');
-            move_uploaded_file($image['tmp_name'], 'images/' . $image['name']);
+            mkdir(dirname($imagePath));
+            move_uploaded_file($image['tmp_name'], $imagePath);
         }
 
         $conn = new PDO('mysql:host=localhost; dbname=php-music-crud; charset=utf8mb4', 'root', 'pass');
@@ -31,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $query = $conn->prepare("INSERT INTO products (image, title, description, price, created_date) VALUES (:image, :title, :description, :price, :date)");
 
-        $query->bindValue(':image', '');
+        $query->bindValue(':image', $imagePath);
         $query->bindValue(':title', $title);
         $query->bindValue(':description', $description);
         $query->bindValue(':price', $price);
@@ -42,22 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-echo '<pre>';
-print_r($_FILES);
-echo '</pre>';
-
 ?>
 
 <main>
 
     <h1>Create new product</h1>
 
-    <?php if (!empty($errors)): ?>
+    <?php if (!empty($errors)) : ?>
         <div class="alert error">
             <ul>
-            <?php foreach ($errors as $error): ?>
-                <li><?= $error ?></li>
-            <?php endforeach ?>
+                <?php foreach ($errors as $error) : ?>
+                    <li><?= $error ?></li>
+                <?php endforeach ?>
             </ul>
         </div>
     <?php endif ?>
