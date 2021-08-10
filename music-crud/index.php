@@ -25,27 +25,34 @@ $products = $sql->fetchAll(PDO::FETCH_ASSOC);
     <table>
         <thead>
             <tr>
-                <td>#</td>
+                <td class="center">#</td>
+                <td class="center">Image</td>
                 <td>Title</td>
                 <td>Description</td>
-                <td>Image</td>
                 <td>Price</td>
                 <td>Date</td>
-                <td>Action</td>
+                <td class="actions">Actions</td>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($products as $product): ?>
                 <tr>
-                    <td><?= $product['id'] ?></td>
+                    <td class="center"><?= $product['id'] ?></td>
+                    <td class="center">
+                        <img src="<?= $product['image'] ?>" height="100">
+                    </td>
                     <td><?= $product['title'] ?></td>
                     <td><?= $product['description'] ?></td>
-                    <td><img src="<?= $product['image'] ?>" width="100"></td>
                     <td><?= $product['price'] ?></td>
                     <td><?= $product['created_date'] ?></td>
-                    <td>
+                    <td class="actions">
+                        
                         <a href="edit.php" class="btn bg-blue">Edit</a>
-                        <a href="delete.php" class="btn bg-red">Delete</a>
+                        <form action="delete.php" method="post">
+                            <input type="hidden" name="id" value="<?= $product['id'] ?>">
+                            <button type="submit" class="btn bg-red">Delete</button>
+                        </form>
+                        
                     </td>
                 </tr>
             <?php endforeach ?>
