@@ -3,6 +3,18 @@
 $id = $_GET['id'] ?? header ('Location: index.php');
 $errors = [];
 
+function randStr($n) {
+    $chars = '0123456780ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuvwxyz';
+    $str = '';
+
+    for ($i = 0; $i < $n; $i++) {
+        $index = rand(0, strlen($chars) -1);
+        $str .= $chars[$index];
+    }
+
+    return $str;
+}
+
 // DB connection
 $conn = new PDO('mysql:host=localhost; dbname=php-music-crud; charset=utf8mb4', 'root', 'pass');
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -14,8 +26,6 @@ $query->execute();
 
 $product = $query->fetch(PDO::FETCH_ASSOC);
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image = $_FILES['image'];
     $title = $_POST['title'];
@@ -23,19 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price'];
 
     // Errors control
-    //if (!$image) $errors[] = 'Product image is required';
+    if (!$image) $errors[] = 'Product image is required';
     if (!$title) $errors[] = 'Product title is required';
     if (!$price) $errors[] = 'Product price is required';
     if (!$description) $errors[] = 'Product description is required';
 
     if (!$errors) {
+        // Create uploaded image directories recursively
+        $imagePath = 'images/' . randStr(8) . '/' . $image['name'];
+        mkdir(dirname($imagePath), 0777, true);
+
+        // Check if previous image exists. Remove it if it does and upload the new one.
+        if (!$image) unlink($product['image']);
+        move_uploaded_file($image['tmp_name'], $imagePath);
+
         // Edit product query
         $update = $conn->prepare("UPDATE products SET title = :title, description = :description, image = :image, price = :price WHERE id = :id");
 
         $update->bindValue(':id', $id);
         $update->bindValue(':title', $title);
         $update->bindValue(':description', $description);
-        $update->bindValue(':image', $image);
+        $update->bindValue(':image', $imagePath);
         $update->bindValue(':price', $price);
 
         $update->execute();
@@ -44,9 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-echo '<pre>';
-print_r($product);
-echo '</pre>';
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +100,7 @@ echo '</pre>';
 
                 <div>
                     <label for="image">Product image</label>
-                    <input type="file">
+                    <input type="file" name="image">
                 </div>
             </div>
             
