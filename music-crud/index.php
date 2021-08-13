@@ -2,11 +2,12 @@
 
 include_once 'partials/header.php';
 
+// DB connection and query
 $conn = new PDO('mysql:host=localhost; dbname=php-music-crud; charset=utf8mb4', 'root', 'pass');
 
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = $conn->prepare("SELECT * FROM products ORDER BY created_date DESC");
+$sql = $conn->prepare("SELECT * FROM products ORDER BY id DESC");
 
 $sql->execute();
 
@@ -46,13 +47,11 @@ $products = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <td><?= $product['price'] ?></td>
                     <td><?= $product['created_date'] ?></td>
                     <td class="actions">
-                        
-                        <a href="edit.php" class="btn bg-blue">Edit</a>
+                        <a href="edit.php?id=<?= $product['id'] ?>" class="btn bg-blue">Edit</a>
                         <form action="delete.php" method="post">
                             <input type="hidden" name="id" value="<?= $product['id'] ?>">
                             <button type="submit" class="btn bg-red">Delete</button>
                         </form>
-                        
                     </td>
                 </tr>
             <?php endforeach ?>

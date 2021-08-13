@@ -2,7 +2,9 @@
 
 include_once 'partials/header.php';
 
+// Define empty variables to prevent undefined variables input value errors
 $errors = [];
+$title = $price = $description = '';
 
 function randStr($n)
 {
@@ -16,9 +18,6 @@ function randStr($n)
 
     return $str;
 }
-
-// Define empty variables to prevent undefined variables input value errors
-$title = $price = $description = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $image = $_FILES['image'];
@@ -34,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$description) $errors[] = 'Product description is required';
 
     // Submit form only if there are no errors to have no side effects
-    if (empty($errors)) {
+    if (!$errors) {
         if ($image) {
             $imagePath = 'images/' . randStr(8) . '/' . $image['name'];
             is_dir('images') ?: mkdir('images');

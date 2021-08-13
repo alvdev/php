@@ -15,6 +15,13 @@ body {
     background-color: #f0f8ff;
 }
 
+img {
+    display: inline-block;
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
+}
+
 a {
     text-decoration: none;
     color: #4169e1
@@ -142,6 +149,9 @@ table td {
 table td img {
     display: block;
     margin: 0 auto;
+    width: 50px;
+    background-size: cover;
+    max-height: 50px;
 }
 
 table td.actions {
@@ -157,6 +167,13 @@ table td.actions > * {
 /* Form */
 form > div {
     margin-bottom: 2rem;
+}
+
+/* Pages */
+#edit-product form .edit-img {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 /* Messages */
