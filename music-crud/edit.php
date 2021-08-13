@@ -38,14 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$price) $errors[] = 'Product price is required';
     if (!$description) $errors[] = 'Product description is required';
 
-    if (!$errors) {
-        // Create uploaded image directories recursively
-        $imagePath = 'images/' . randStr(8) . '/' . $image['name'];
-        mkdir(dirname($imagePath), 0777, true);
+    // Actual image path before overwrite it
+    $imagePath = $product['image'];
 
-        // Check if previous image exists. Remove it if it does and upload the new one.
-        if (!$image) unlink($product['image']);
-        move_uploaded_file($image['tmp_name'], $imagePath);
+    if (!$errors) {
+        // Check if previous image exists and remove it if it does.
+        if ($image['tmp_name']) {
+            unlink($product['image']);
+            
+            // Recursively create upload image directory and put the file in it
+            $imagePath = 'images/' . randStr(8) . '/' . $image['name'];
+            mkdir(dirname($imagePath), 0777, true);
+            move_uploaded_file($image['tmp_name'], $imagePath);
+        }
 
         // Edit product query
         $update = $conn->prepare("UPDATE products SET title = :title, description = :description, image = :image, price = :price WHERE id = :id");
@@ -53,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $update->bindValue(':id', $id);
         $update->bindValue(':title', $title);
         $update->bindValue(':description', $description);
-        $update->bindValue(':image', $imagePath);
+        if ($image) $update->bindValue(':image', $imagePath);
         $update->bindValue(':price', $price);
 
         $update->execute();
