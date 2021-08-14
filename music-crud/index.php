@@ -2,16 +2,26 @@
 
 include_once 'partials/header.php';
 
+$search = $_GET['search'] ?? '';
+
+echo $search. ' <- This is the seach term';
+
 // DB connection and query
 $conn = new PDO('mysql:host=localhost; dbname=php-music-crud; charset=utf8mb4', 'root', 'pass');
-
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $sql = $conn->prepare("SELECT * FROM products ORDER BY id DESC");
-
 $sql->execute();
 
 $products = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+if ($search) {
+    $sql = $conn->prepare("SELECT * FROM products WHERE title LIKE :search");
+    $sql->bindValue(':search', '%' . $search . '%');
+    $sql->execute();
+
+    $products = $sql->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ?>
 
@@ -19,9 +29,14 @@ $products = $sql->fetchAll(PDO::FETCH_ASSOC);
     
     <h1>Music products CRUD</h1>
     
-    <p>
+    <div class="top-table">
+        <form action="" id="search" method="get">
+            <input type="text" name="search" value="<?= $search ?>">
+            <button class="">Search</button>
+        </form>
+
         <a href="create.php" class="btn bg-green">Create new product</a>
-    </p>
+    </div>
     
     <table>
         <thead>
