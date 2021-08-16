@@ -4,8 +4,6 @@ include_once 'partials/header.php';
 
 $search = $_GET['search'] ?? '';
 
-echo $search. ' <- This is the seach term';
-
 // DB connection and query
 $conn = new PDO('mysql:host=localhost; dbname=php-music-crud; charset=utf8mb4', 'root', 'pass');
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
