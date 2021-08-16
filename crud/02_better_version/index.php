@@ -1,33 +1,33 @@
 <?php 
 
-include_once 'partials/header.php';
-require_once 'database.php';
+include_once './partials/header.php';
+require_once './database.php';
 
 ?>
 
 <main>
-
+<h1>Products CRUD</h1>
 <table>
     <thead>
         <tr>
-            <td>id</td>
-            <td>image</td>
+            <td class="center">id</td>
+            <td class="center">image</td>
             <td>title</td>
             <td>description</td>
             <td>price</td>
-            <td>actions</td>
+            <td class="actions">actions</td>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($products as $product): ?>
             <tr>
-                <td><?= $product['id'] ?></td>
-                <td><img src="<?= $product['image'] ?>"></td>
+                <td class="center"><?= $product['id'] ?></td>
+                <td class="center"><img src="<?= $product['image'] ?>"></td>
                 <td><?= $product['title'] ?></td>
                 <td><?= $product['description'] ?></td>
                 <td><?= $product['price'] ?></td>
-                <td>
-                    <a href="#" class="btn bg-red">Delete</a>
+                <td class="actions">
+                    <a href="delete.php?id=<?= $product['id'] ?>" class="btn bg-red">Delete</a>
                     <a href="#" class="btn bg-blue">Update</a>
                 </td>
             </tr>
