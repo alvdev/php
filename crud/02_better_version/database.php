@@ -7,3 +7,17 @@ $query = $conn->prepare("SELECT * FROM products ORDER BY id DESC");
 $query->execute();
 
 $products = $query->fetchAll(PDO::FETCH_ASSOC);
+
+/**
+ * Search and filter query
+ */
+
+$search = $_GET['search'] ?? null;
+
+if ($search) {
+    $sql = $conn->prepare("SELECT * FROM products WHERE title LIKE :search");
+    $sql->bindValue(':search', '%' . $search . '%');
+    $sql->execute();
+
+    $products = $sql->fetchAll(PDO::FETCH_ASSOC);
+}

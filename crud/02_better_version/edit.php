@@ -1,6 +1,6 @@
 <?php
 
-include_once './partials/header.php';
+include_once './views/partials/header.php';
 require_once './database.php';
 require_once './functions.php';
 
@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($price == 0) $errors[] = 'Price is mandatory';
 
     // Upload image
-    $imagePath = './assets/images/' . randStr(8) . '/' . strtolower(str_replace(' ', '_', $image['name']));
-    mkdir(dirname($imagePath));
-    move_uploaded_file($image['tmp_name'], $imagePath);
-
-    echo $imagePath . '<- This is the image path';
+    if ($image['name']) {
+        $imagePath = './assets/images/' . randStr(8) . '/' . strtolower(str_replace(' ', '_', $image['name']));
+        mkdir(dirname($imagePath));
+        move_uploaded_file($image['tmp_name'], $imagePath);
+    }
 
     $query = $conn->prepare("UPDATE products SET image = :image, title = :title, description = :description, price = :price WHERE id = :id");
 
@@ -42,6 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query->bindValue(':price', $price);
 
     $query->execute();
+
+    header ('Location: index.php');
 }
 
 ?>
@@ -50,41 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h1>Update product</h1>
 
-    <?php if ($errors): ?>
-        <div class="alert error">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?= $error ?></li>
-                <?php endforeach ?>
-            </ul>
-        </div>
-    <?php endif ?>
-
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="edit-img">
-            <?php if ($product['image']): ?>
-                <img src="<?= $product['image'] ?>" alt="<?= $product['title'] ?>">
-            <?php endif ?>
-            <div>
-                <label for="image">Product image</label>
-                <input type="file" name="image" id="image" value="<?= $product['image'] ?>">
-            </div>
-        </div>
-        <div>
-            <label for="title">Product title</label>
-            <input type="text" name="title" id="title" value="<?= $product['title'] ?>">
-        </div>
-        <div>
-            <label for="description">Product description</label>
-            <input type="text" name="description" id="description" value="<?= $product['description'] ?>">
-        </div>
-        <div>
-            <label for="price">Product price</label>
-            <input type="number" step="0.01" name="price" id="price" value="<?= $product['price'] ?>">
-        </div>
-        <button class="btn-lg bg-blue">Create product</button>
-    </form>
+    <?php include_once 'views/products/form.php' ?>
 
 </main>
 
-<?php include_once './partials/footer.php'; ?>
+<?php include_once './views/partials/footer.php'; ?>

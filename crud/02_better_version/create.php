@@ -1,28 +1,33 @@
 <?php
 
-include_once './partials/header.php';
+/** @var $conn \PDO */
 require_once './database.php';
 require_once './functions.php';
 
 $errors = [];
-$image = $_FILES['image'] ?? null;
-$title = $_POST['title'] ?? null;
-$description = $_POST['description'] ?? null;
-$price = $_POST['price'] ?? null;
-$date = date('Y-m-d H:i:s');
+$product = [
+    'image' => $_FILES['name'] ?? null,
+    'title' => $_POST['title'] ?? null,
+    'description' => $_POST['description'] ?? null,
+    'price' => $_POST['price'] ?? null,
+];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $image = $_FILES['image'];
+    $title = $_POST['title'];
+    $description = $_POST['description'];
+    $price = $_POST['price'] ?: 0;
+    $date = date('Y-m-d H:i:s');
 
     // Errors control
-    if (!$image) $errors[] = 'Image field es mandatory';
+    if (!$image['name']) $errors[] = 'Image field es mandatory';
     if (!$title) $errors[] = 'Title field is mandatory';
     if (!$description) $errors[] = 'Description field is mandatory';
     if (!$price) $errors[] = 'Price field is mandatory';
 
     if (!$errors) {
-        
-           // Upload image file to the server
-        $imagePath = 'assets/images/' . randStr(8) . '/' . $image['name'];
+        // Upload image file to the server
+        $imagePath = 'assets/images/' . randStr(8) . '/' . strtolower(str_replace(' ', '_', $image['name']));
         mkdir(dirname($imagePath));
         move_uploaded_file($image['tmp_name'], $imagePath);
 
@@ -33,50 +38,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query->bindValue(':price', $price);
         $query->bindValue(':date', $date);
         $query->execute();
-    }
 
+        header ('Location: index.php');
+    }
 }
 
-
-
-echo '<pre>';
-print_r($_FILES);
-echo '</pre>';
-
 ?>
+
+<?php include_once './views/partials/header.php' ?>
 
 <main>
 
     <h1>Create product</h1>
 
-    <?php if ($errors): ?>
-        <div class="alert error">
-            <ul>
-                <?php foreach ($errors as $error): ?>
-                    <li><?= $error ?></li>
-                <?php endforeach ?>
-            </ul>
-        </div>
-    <?php endif ?>
-
-    <form action="" method="post" enctype="multipart/form-data">
-        <div>
-            <label for="image">Product image</label>
-            <input type="file" name="image" id="image" value="<?= $image ?>">
-        </div>
-        <div>
-            <label for="title">Product title</label>
-            <input type="text" name="title" id="title" value="<?= $title ?>">
-        </div>
-        <div>
-            <label for="description">Product description</label>
-            <input type="text" name="description" id="description" value="<?= $description ?>">
-        </div>
-        <div>
-            <label for="price">Product price</label>
-            <input type="number" step="0.01" name="price" id="price" value="<?= $price ?>">
-        </div>
-        <button class="btn-lg bg-blue">Create product</button>
-    </form>
+    <?php include_once './views/products/form.php' ?>
 
 </main>
+
+<?php include_once './views/partials/header.php' ?>
