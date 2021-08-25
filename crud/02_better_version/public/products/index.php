@@ -1,7 +1,7 @@
 <?php 
 
-include_once './views/partials/header.php';
-require_once './database.php';
+include_once '../../views/partials/header.php';
+require_once '../../database.php';
 
 ?>
 
@@ -50,4 +50,4 @@ require_once './database.php';
 
 </main>
 
-<?php include_once './views/partials/footer.php' ?>
+<?php include_once '../../views/partials/footer.php' ?>

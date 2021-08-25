@@ -1,6 +1,6 @@
 <?php
 
-require_once 'database.php';
+require_once '../../database.php';
 
 $id = $_GET['id'] ?? header ('Location: index.php');
 
