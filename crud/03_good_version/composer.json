@@ -1,0 +1,13 @@
+{
+    "name": "alvdev/crud",
+    "description": "MVC simple products CRUD",
+    "require": {
+        "composer/composer": "^2.1"
+    },
+    "authors": [
+        {
+            "name": "alv.dev",
+            "email": "soy@alv.dev"
+        }
+    ]
+}
