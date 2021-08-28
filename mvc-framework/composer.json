@@ -1,0 +1,15 @@
+{
+    "name": "alvdev/mvc-framework",
+    "authors": [
+        {
+            "name": "alv.dev",
+            "email": "soy@alv.dev"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {}
+}
