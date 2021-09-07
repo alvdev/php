@@ -1,13 +1,15 @@
 {
-    "name": "alvdev/crud",
-    "description": "MVC simple products CRUD",
-    "require": {
-        "composer/composer": "^2.1"
+    "name": "alvdev/03_good_version",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
     },
     "authors": [
         {
             "name": "alv.dev",
             "email": "soy@alv.dev"
         }
-    ]
+    ],
+    "require": {}
 }
