@@ -19,8 +19,21 @@ class Router
 
     public function resolve()
     {
-        echo '<pre>';
-        print_r($_SERVER);
-        echo '</pre>';
+        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+        $method = $_SERVER['REQUEST_METHOD'];
+
+        if ($method === 'GET') {
+            $fn = $this->getRoutes[$currentUrl] ?? null;
+        } else {
+            $fn = $this->postRoutes[$currentUrl] ?? null;
+        }
+
+        if ($fn) {
+            call_user_func($fn);
+        } else {
+            echo '<pre>';
+            print_r($fn);
+            echo '</pre>';
+        }
     }
 }

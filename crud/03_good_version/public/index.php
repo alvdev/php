@@ -5,8 +5,6 @@ require_once '../vendor/autoload.php';
 use app\Router;
 use app\controllers\ProductController;
 
-echo __DIR__;
-
 $router = new Router();
 
 $router->get('/', [ProductController::class, 'index']);
