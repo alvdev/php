@@ -2,11 +2,19 @@
 
 namespace app\controllers;
 
+use app\Router;
+
 class ProductController
 {
-    public function index()
+    static function index(Router $router)
     {
-        echo 'Index page';
+        $products = $router->db->getProducts();
+
+        echo '<pre>';
+        print_r($products);
+        echo '</pre>';
+
+        $router->renderView('products/index', ['products' => $products]);
     }
 
     public function create()

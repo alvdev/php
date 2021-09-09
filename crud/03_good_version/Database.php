@@ -10,7 +10,7 @@ class Database
 
     public function __construct()
     {
-        $this->conn = new PDO('mysql:host=localhost, dbname=php_music_crud, charset=utf8mb4', 'root', 'pass');
+        $this->conn = new PDO('mysql:host=localhost; dbname=php-music-crud; charset=utf8mb4', 'root', 'pass');
         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
@@ -20,13 +20,13 @@ class Database
             $query = $this->conn->prepare(
                 'SELECT * FROM products
                  WHERE title LIKE :title 
-                 ORDER BY create_date'
+                 ORDER BY created_date'
             );
             $query->bindValue(':title', "%$search%");
         } else {
             $query = $this->conn->prepare(
                 'SELECT * FROM products 
-                 ORDER BY create_date DESC'
+                 ORDER BY created_date DESC'
             );
             $query->execute();
             $products = $query->fetchAll(PDO::FETCH_ASSOC);

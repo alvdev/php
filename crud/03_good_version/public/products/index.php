@@ -1,9 +1,12 @@
 <?php
 
-require_once '../vendor/autoload.php';
-
 use app\Router;
 use app\controllers\ProductController;
+
+require_once '../../vendor/autoload.php';
+
+$database = new \app\Database();
+$router = new Router($database);
 
 $router = new Router();
 
