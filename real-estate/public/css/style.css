@@ -1,0 +1,185 @@
+@font-face {
+    font-family: pixelate;
+    font-weight: normal;
+    src: url(../fonts/pixelate.ttf);
+}
+
+/* Reset styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: purple;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Global styles */
+
+body {
+    display: grid;
+    font: 1rem / 1.5rem Arial;
+    gap: 2rem;
+    grid-template-areas:
+        "aside nav"
+        "aside main"
+        "aside footer"
+    ;
+    grid-template-columns: 2fr 4fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+table {
+    overflow-x: scroll;
+    width: 100%;
+}
+
+th {
+    padding-bottom: 1rem;
+    text-align-last: left;
+}
+
+a {
+    color: royalblue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
+.btn {
+    align-items: center;
+    align-self: stretch;
+    border: 1px solid #333;
+    border-radius: 4px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    font-size: .8rem;
+    padding: .5rem 1rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn.blue {
+    background-color: royalblue;
+    border-color: royalblue;
+    color: #fff;
+}
+
+.btn:hover {
+    opacity: .9;
+}
+
+.btn-group {
+    display: flex;
+    gap: .5rem;
+}
+
+.btn-group>* {
+    position: relative;
+}
+
+/* Content styles */
+
+aside {
+    background: url(../img/real-estate.webp) no-repeat 0 top / contain;
+    grid-area: aside;
+    height: 100vh;
+}
+
+.container {
+    background: linear-gradient(transparent, hsl(69, 87%, 71%) 175px);
+    height: 100%;
+    overflow-y: scroll;
+    padding: 175px 2vw 2rem;
+}
+
+aside .btn-group input[type="radio"] {
+    cursor: pointer;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.btn-group input[type="radio"]:checked+label {
+    border-color: transparent;
+    box-shadow: 0 0 0 2px royalblue;
+    color: royalblue;
+    font-weight: bold;
+}
+
+
+nav {
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    gap: 2rem;
+    grid-area: nav;
+    justify-content: space-between;
+    padding: 2rem 0;
+    width: 96%;
+}
+
+.logo {
+    font-family: pixelate;
+    font-size: 2.2rem;
+}
+
+main {
+    display: flex;
+    grid-area: main;
+    height: 100%;
+    width: 96%;
+}
+
+footer {
+    border-top: 1px solid #ccc;
+    display: flex;
+    grid-area: footer;
+    justify-content: space-between;
+    padding: 2rem 0;
+    width: 96%;
+}
+
+footer span {
+    color: crimson;
+}
+
+/* Media queries */
+
+@media screen and (max-width: 639px) {
+    nav {
+        flex-direction: column;
+    }
+}

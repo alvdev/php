@@ -1,0 +1,15 @@
+{
+    "name": "alvdev/real-estate",
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alv.dev",
+            "email": "soy@alv.dev"
+        }
+    ],
+    "require": {}
+}
