@@ -32,8 +32,27 @@ body {
     height: 100%;
 }
 
+h1 {
+    margin-bottom: 2rem;
+}
+
+table {
+    overflow-x: scroll;
+    width: 100%;
+}
+
+th {
+    padding-bottom: 1rem;
+    text-align-last: left;
+}
+
 a {
+    color: royalblue;
     text-decoration: none;
+}
+
+a:hover {
+    color: black;
 }
 
 .btn {
@@ -42,10 +61,11 @@ a {
     border: 1px solid #333;
     border-radius: 4px;
     color: #333;
+    cursor: pointer;
     display: flex;
-    text-align: center;
     font-size: .8rem;
     padding: .5rem 1rem;
+    text-align: center;
     text-transform: uppercase;
 }
 
@@ -64,12 +84,36 @@ a {
     gap: .5rem;
 }
 
+.btn-group>* {
+    position: relative;
+}
+
 /* Content styles */
 
 aside {
-    background-color: hsl(69, 87%, 71%);
+    background: url(../img/real-estate.webp) no-repeat 0 top / contain;
     grid-area: aside;
-    padding: 2rem
+}
+
+aside .btn-group input[type="radio"] {
+    cursor: pointer;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.btn-group input[type="radio"]:checked+label {
+    box-shadow: 0 0 0 2px royalblue;
+    border-color: transparent;
+    color: royalblue;
+    font-weight: bold;
+}
+
+.container {
+    background: linear-gradient(transparent, hsl(69, 87%, 71%) 175px);
+    height: 100%;
+    padding: 175px 2vw 2rem;
 }
 
 nav {
@@ -97,9 +141,15 @@ main {
 
 footer {
     border-top: 1px solid #ccc;
+    display: flex;
     grid-area: footer;
+    justify-content: space-between;
     padding: 2rem 0;
     width: 96%;
+}
+
+footer span {
+    color: crimson;
 }
 
 /* Media queries */
