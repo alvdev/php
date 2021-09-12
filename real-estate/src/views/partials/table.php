@@ -1,3 +1,10 @@
+<?php
+
+$db = new config\Database;
+$pisos = $db->getPisos();
+
+?>
+
 <table>
     <thead>
         <tr>

@@ -18,23 +18,32 @@ html {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-track {
     background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background-color: purple;
+    background-color: #CDCDCD;
     border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: hsl(69, 87%, 48%);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #A6A6A6;
 }
 
 /* Global styles */
@@ -84,8 +93,10 @@ a:hover {
     color: #333;
     cursor: pointer;
     display: flex;
-    font-size: .8rem;
+    font-size: .75rem;
+    letter-spacing: 1px;
     padding: .5rem 1rem;
+    padding: .25rem .75rem;
     text-align: center;
     text-transform: uppercase;
 }
@@ -122,6 +133,9 @@ aside {
     height: 100%;
     overflow-y: scroll;
     padding: 175px 2vw 2rem;
+    /* Firefox scrollbar fix */
+    scrollbar-color: hsl(69, 87%, 48%) transparent;
+    scrollbar-width: thin;
 }
 
 aside .btn-group input[type="radio"] {
@@ -147,7 +161,7 @@ nav {
     gap: 2rem;
     grid-area: nav;
     justify-content: space-between;
-    padding: 2rem 0;
+    padding: 2vw 0;
     width: 96%;
 }
 
@@ -160,15 +174,20 @@ main {
     display: flex;
     grid-area: main;
     height: 100%;
+    overflow: auto;
+    scrollbar-color: #eee;
+    /* Firefox scrollbar */
+    scrollbar-width: thin;
     width: 96%;
 }
 
 footer {
+    align-items: center;
     border-top: 1px solid #ccc;
     display: flex;
     grid-area: footer;
     justify-content: space-between;
-    padding: 2rem 0;
+    padding: 2vw 0;
     width: 96%;
 }
 
