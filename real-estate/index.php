@@ -3,8 +3,11 @@
 require_once './vendor/autoload.php';
 require_once 'config/config.php';
 
-include_once VIEW . 'templates/header.php';
+// Getting page url
+$page = $_GET['page'] ?? 'home';
 
-include_once VIEW . 'templates/main.php';
-
-include_once VIEW . 'templates/footer.php';
+if ($page === 'login') {
+    include_once CTRL . 'loginPage.php';
+} else {
+    include_once CTRL . 'homePage.php';
+}

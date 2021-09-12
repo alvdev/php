@@ -158,7 +158,7 @@ nav {
     align-items: center;
     border-bottom: 1px solid #ccc;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     grid-area: nav;
     justify-content: space-between;
     padding: 2vw 0;
