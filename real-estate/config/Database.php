@@ -23,7 +23,7 @@ class Database
 
     public function getPisos()
     {
-        $sql = "SELECT * FROM pisos LIMIT 10";
+        $sql = "SELECT * FROM pisos LIMIT 30";
         $query = $this->connect()->query($sql);
         $results = $query->fetchAll(PDO::FETCH_BOTH);
 
