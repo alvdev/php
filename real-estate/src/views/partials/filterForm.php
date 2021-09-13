@@ -9,7 +9,7 @@ $provinces = $obj->showFilters('provincias');
 ?>
 
 <form action="" id="filter" method="post">
-    <div class="wrap btn-group">
+    <div class="btn-group">
         <div>
             <input type="radio" name="operation" id="operation" value="sale">
             <label for="sale" class="btn">Sale</label>
@@ -20,24 +20,28 @@ $provinces = $obj->showFilters('provincias');
         </div>
     </div>
 
-    <div class="wrap type">
+    <div class="type">
         <h2>Type</h2>
-        <?php foreach ($types as $type) : ?>
-            <div>
-                <input type="checkbox" name="type[]" id="type" value="<?= $type['tipo_nombre'] ?>">
-                <label for="type"><?= $type['tipo_nombre'] ?></label>
-            </div>
-        <?php endforeach ?>
+        <div class="wrap">
+            <?php foreach ($types as $type) : ?>
+                <div>
+                    <input type="checkbox" name="type[]" id="type" value="<?= $type['tipo_nombre'] ?>">
+                    <label for="type"><?= $type['tipo_nombre'] ?></label>
+                </div>
+            <?php endforeach ?>
+        </div>
     </div>
 
-    <div class="wrap">
+    <div class="location">
         <h2>Province</h2>
-        <?php foreach ($provinces as $province) : ?>
-            <div>
-                <input type="checkbox" name="province[]" id="province" value="<?= $province['prov_nombre'] ?>">
-                <label for="sale"><?= $province['prov_nombre'] ?></label>
-            </div>
-        <?php endforeach ?>
+        <div class="wrap">
+            <?php foreach ($provinces as $province) : ?>
+                <div>
+                    <input type="checkbox" name="province[]" id="province" value="<?= $province['prov_nombre'] ?>">
+                    <label for="sale"><?= $province['prov_nombre'] ?></label>
+                </div>
+            <?php endforeach ?>
+        </div>
     </div>
 
     <div class="wrap">
@@ -50,10 +54,13 @@ $provinces = $obj->showFilters('provincias');
         </select>
     </div>
 
-    <div class="wrap price">
-        <label for="price">Max. price</label>
-        <input name="price" type="range" id="price" value="200000" min="0" max="1000000">
-        <output>200,000€</output>
+    <div class="price">
+        <h2>Max. price</h2>
+        <div class="wrap">
+            <label for="price"></label>
+            <input name="price" type="range" id="price" value="200000" min="0" max="1000000">
+            <output>200,000€</output>
+        </div>
     </div>
 
     <button class="btn submit">Filter results</button>
