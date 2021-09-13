@@ -12,7 +12,7 @@ class Database
     protected $dbuser = 'root';
     protected $dbpass = 'pass';
 
-    protected function connect()
+    public function connect()
     {
         $dsn = "mysql:host=$this->host; dbname=$this->dbname; charset=$this->charset";
         $conn = new PDO($dsn, $this->dbuser, $this->dbpass);

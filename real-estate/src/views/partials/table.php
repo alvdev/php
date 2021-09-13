@@ -2,16 +2,11 @@
 
 use app\controllers\QueryController;
 
-$get = new QueryController();
-echo '<pre>';
-print_r($get);
-echo '</pre>';
+$list = new QueryController();
+$properties = $list->getProperties();
 
-$db = new app\models\Query('piso_referencia, piso_precio_venta', 'pisos');
-
-$columnsTitle = ['Ref', 'Precio'];
+$columnsTitle = ['Ref', 'Sale/Rent', 'Type', 'Province', 'Area', 'Price'];
 $columnTitleCount = count($columnsTitle);
-$properties = $db->select();
 
 ?>
 
@@ -21,17 +16,17 @@ $properties = $db->select();
             <?php foreach ($columnsTitle as $columnTitle) : ?>
                 <th><?= $columnTitle ?></th>
             <?php endforeach ?>
-            <th>Ref</th>
-            <th>title 1</th>
-            <th>title 1</th>
-            <th>title 1</th>
-            <th>Price</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($properties as $property) : ?>
             <tr>
-                <td><?= $property[0] ?></td>
+                <td><?= $property['piso_referencia'] ?></td>
+                <td><?= $property['op_operacion'] ?></td>
+                <td><?= $property['tipo_nombre'] ?></td>
+                <td><?= $property['prov_nombre'] ?></td>
+                <td><?= $property['piso_superficie'] . 'm<sup>2</sup>' ?></td>
+                <td><?= number_format($property['piso_precio_venta'], 0, ',', '.') ?>€</td>
             </tr>
         <?php endforeach ?>
     </tbody>

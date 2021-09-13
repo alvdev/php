@@ -75,6 +75,10 @@ h1 {
     margin-bottom: 2rem;
 }
 
+h2 {
+    margin-bottom: 1rem;
+}
+
 table {
     overflow-x: scroll;
     width: 100%;
@@ -179,7 +183,7 @@ aside .btn-group input[type="radio"] {
 }
 
 aside form>*:not(:first-child) {
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 nav {
@@ -198,13 +202,18 @@ nav {
     font-size: 2.2rem;
 }
 
+.logo a {
+    color: black;
+}
+
 main {
     display: flex;
     grid-area: main;
     height: 100%;
     overflow: auto;
-    scrollbar-color: #eee;
+
     /* Firefox scrollbar */
+    scrollbar-color: #cdcdcd#f0f0f0;
     scrollbar-width: thin;
     width: 96%;
 }

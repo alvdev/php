@@ -3,15 +3,13 @@
 use app\controllers\QueryController;
 
 $obj = new QueryController();
-$provinces = $obj->getProvinces();
-
-$filter = $obj->filter();
-echo $filter;
+$types = $obj->showFilters('tipos');
+$provinces = $obj->showFilters('provincias');
 
 ?>
 
-<form action="" id="filter">
-    <div class="btn-group">
+<form action="" id="filter" method="post">
+    <div class="wrap btn-group">
         <div>
             <input type="radio" name="operation" id="operation" value="sale">
             <label for="sale" class="btn">Sale</label>
@@ -22,7 +20,18 @@ echo $filter;
         </div>
     </div>
 
-    <div>
+    <div class="wrap type">
+        <h2>Type</h2>
+        <?php foreach ($types as $type) : ?>
+            <div>
+                <input type="checkbox" name="type[]" id="type" value="<?= $type['tipo_nombre'] ?>">
+                <label for="type"><?= $type['tipo_nombre'] ?></label>
+            </div>
+        <?php endforeach ?>
+    </div>
+
+    <div class="wrap">
+        <h2>Province</h2>
         <?php foreach ($provinces as $province) : ?>
             <div>
                 <input type="checkbox" name="province[]" id="province" value="<?= $province['prov_nombre'] ?>">
@@ -31,19 +40,20 @@ echo $filter;
         <?php endforeach ?>
     </div>
 
-    <div>
+    <div class="wrap">
         <label for="limit">Limit</label>
         <select name="limit" id="limit">
             <option value="10">10</option>
-            <option value="25">25</option>
+            <option value="25" selected>25</option>
             <option value="50">50</option>
+            <option value="100">100</option>
         </select>
     </div>
 
-    <div class="price">
+    <div class="wrap price">
         <label for="price">Max. price</label>
-        <input name="price" type="range" id="price" value="100000" min="0" max="1000000">
-        <output>100,000€</output>
+        <input name="price" type="range" id="price" value="200000" min="0" max="1000000">
+        <output>200,000€</output>
     </div>
 
     <button class="btn submit">Filter results</button>
