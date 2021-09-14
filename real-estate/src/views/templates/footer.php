@@ -1,7 +1,7 @@
 </main>
 
 <footer>
-    <div class="copyright">Developed with <span>&#10084;</span> by <a href="https://alv.dev">alv.dev</a></div>
+    <div class="copyright">Developed with <span>&#10084;</span> by <a href="https://alv.dev" target="_blank">alv.dev</a></div>
     <div class="social">
         <a href="https://github.com/alvdev" target="_blank" rel="noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
