@@ -82,10 +82,10 @@ h2 {
 }
 
 table {
+    border-collapse: separate;
+    border-spacing: 0 .5rem;
     overflow-x: scroll;
     width: 100%;
-    border-spacing: 0 .5rem;
-    border-collapse: separate;
 }
 
 tbody tr {
@@ -135,10 +135,10 @@ input[type="range"] {
 }
 
 select {
-    padding: .5rem 1rem;
+    border: 2px solid #bbb;
     border-radius: 4px;
     font-size: 1.2rem;
-    border: 2px solid #bbb;
+    padding: .5rem 1rem;
 }
 
 .btn {
@@ -206,12 +206,12 @@ aside {
 }
 
 aside .btn-group input[type="radio"] {
+    background-color: red;
     cursor: pointer;
     height: 100%;
     opacity: 0;
     position: absolute;
     width: 100%;
-    background-color: red;
 }
 
 aside .type .wrap,
@@ -271,11 +271,11 @@ main {
     grid-area: main;
     height: 100%;
     overflow: auto;
+    width: 96%;
 
     /* Firefox scrollbar */
     scrollbar-color: #cdcdcd#f0f0f0;
     scrollbar-width: thin;
-    width: 96%;
 }
 
 footer {
@@ -295,11 +295,48 @@ footer span {
 /**
  *
  * Media Queries
+ * Mobile Last... Only this time ;) 
  *
  */
 
 @media screen and (max-width: 639px) {
+    body {
+        gap: 0;
+        grid-template-areas:
+            "nav"
+            "aside"
+            "main"
+            "footer"
+        ;
+        grid-template-columns: 1fr;
+        height: auto;
+        overflow: overlay;
+    }
+
     nav {
         flex-direction: column;
+    }
+
+    aside,
+    .container {
+        height: auto;
+    }
+
+    .container {
+        overflow: auto;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    main {
+        padding: 0 2%;
+        width: 100%;
+    }
+
+    nav,
+    main,
+    footer {
+        padding: 2rem 2%;
+        width: 100%
     }
 }
