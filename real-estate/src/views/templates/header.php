@@ -16,7 +16,7 @@
     <?php include_once __DIR__ . '/aside.php' ?>
 
     <nav>
-        <div class="logo">idealisto</div>
+        <div class="logo"><a href="./">idealisto</a></div>
         <div class="btn-group">
             <a href="#" class="btn blue">Add property</a>
             <a href="#" class="btn">Login</a>

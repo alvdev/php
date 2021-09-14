@@ -1,17 +1,32 @@
+<?php
+
+use app\controllers\QueryController;
+
+$list = new QueryController();
+$properties = $list->getProperties();
+
+$columnsTitle = ['Ref', 'Sale/Rent', 'Type', 'Province', 'Area', 'Price'];
+$columnTitleCount = count($columnsTitle);
+
+?>
+
 <table>
     <thead>
         <tr>
-            <th>title 1</th>
-            <th>title 1</th>
-            <th>title 1</th>
-            <th>title 1</th>
-            <th>title 1</th>
+            <?php foreach ($columnsTitle as $columnTitle) : ?>
+                <th><?= $columnTitle ?></th>
+            <?php endforeach ?>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($pisos as $piso) : ?>
+        <?php foreach ($properties as $property) : ?>
             <tr>
-                <td><?= $piso[1] ?></td>
+                <td><?= $property['piso_referencia'] ?></td>
+                <td><?= $property['op_operacion'] ?></td>
+                <td><?= $property['tipo_nombre'] ?></td>
+                <td><?= $property['prov_nombre'] ?></td>
+                <td><?= $property['piso_superficie'] . 'm<sup>2</sup>' ?></td>
+                <td><?= number_format($property['piso_precio_venta'], 0, ',', '.') ?>€</td>
             </tr>
         <?php endforeach ?>
     </tbody>

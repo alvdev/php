@@ -4,7 +4,11 @@
     src: url(../fonts/pixelate.ttf);
 }
 
-/* Reset styles */
+/**
+ *
+ * Reset styles
+ *
+ */
 
 * {
     box-sizing: border-box;
@@ -18,26 +22,40 @@ html {
 
 /* width */
 ::-webkit-scrollbar {
-    width: 6px;
+    height: 8px;
+    width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
     background: transparent;
+    border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background-color: purple;
+    background-color: #CDCDCD;
     border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: hsl(69, 87%, 48%);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #A6A6A6;
 }
 
-/* Global styles */
+/**
+ *
+ * Block comment
+ *
+ */
 
 body {
     display: grid;
@@ -54,16 +72,47 @@ body {
 }
 
 h1 {
+    font-size: 2rem;
     margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
 }
 
 table {
     overflow-x: scroll;
     width: 100%;
+    border-spacing: 0 .5rem;
+    border-collapse: separate;
+}
+
+tbody tr {
+    background-color: #f1f1f1;
+}
+
+tbody tr td {
+    padding: .5rem 1rem;
+}
+
+td:first-child {
+    border-radius: 6px 0 0 6px;
+}
+
+td:last-child {
+    border-radius: 0 6px 6px 0;
+}
+
+thead {
+    background-color: white;
+    box-shadow: 0 10px 10px white;
+    position: sticky;
+    top: 0;
 }
 
 th {
-    padding-bottom: 1rem;
+    padding: 0 0 .5rem 1rem;
     text-align-last: left;
 }
 
@@ -76,6 +125,22 @@ a:hover {
     color: black;
 }
 
+input[type="checkbox"] {
+    height: 1.2rem;
+    width: 1.2rem;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+select {
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    border: 2px solid #bbb;
+}
+
 .btn {
     align-items: center;
     align-self: stretch;
@@ -84,8 +149,10 @@ a:hover {
     color: #333;
     cursor: pointer;
     display: flex;
-    font-size: .8rem;
-    padding: .5rem 1rem;
+    font-size: .75rem;
+    justify-content: center;
+    letter-spacing: 1px;
+    padding: .25rem .75rem;
     text-align: center;
     text-transform: uppercase;
 }
@@ -96,8 +163,15 @@ a:hover {
     color: #fff;
 }
 
+.btn.submit {
+    background-color: black;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    width: 100%;
+}
+
 .btn:hover {
-    opacity: .9;
+    opacity: .8;
 }
 
 .btn-group {
@@ -109,7 +183,11 @@ a:hover {
     position: relative;
 }
 
-/* Content styles */
+/**
+ *
+ * Content styles
+ *
+ */
 
 aside {
     background: url(../img/real-estate.webp) no-repeat 0 top / contain;
@@ -122,6 +200,9 @@ aside {
     height: 100%;
     overflow-y: scroll;
     padding: 175px 2vw 2rem;
+    /* Firefox scrollbar fix */
+    scrollbar-color: hsl(69, 87%, 48%) transparent;
+    scrollbar-width: thin;
 }
 
 aside .btn-group input[type="radio"] {
@@ -130,6 +211,24 @@ aside .btn-group input[type="radio"] {
     opacity: 0;
     position: absolute;
     width: 100%;
+    background-color: red;
+}
+
+aside .type .wrap,
+aside .location .wrap {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+aside .wrap>* {
+    align-items: center;
+    display: flex;
+    gap: .5rem;
+}
+
+.btn-group input[type="radio"]+label {
+    background-color: hsl(69, 87%, 71%);
 }
 
 .btn-group input[type="radio"]:checked+label {
@@ -139,15 +238,22 @@ aside .btn-group input[type="radio"] {
     font-weight: bold;
 }
 
+aside form>*:not(:first-child) {
+    margin-top: 2.5rem;
+}
+
+aside .btn-group>* {
+    width: 100%;
+}
 
 nav {
     align-items: center;
     border-bottom: 1px solid #ccc;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     grid-area: nav;
     justify-content: space-between;
-    padding: 2rem 0;
+    padding: 2vw 0;
     width: 96%;
 }
 
@@ -156,19 +262,29 @@ nav {
     font-size: 2.2rem;
 }
 
+.logo a {
+    color: black;
+}
+
 main {
     display: flex;
     grid-area: main;
     height: 100%;
+    overflow: auto;
+
+    /* Firefox scrollbar */
+    scrollbar-color: #cdcdcd#f0f0f0;
+    scrollbar-width: thin;
     width: 96%;
 }
 
 footer {
+    align-items: center;
     border-top: 1px solid #ccc;
     display: flex;
     grid-area: footer;
     justify-content: space-between;
-    padding: 2rem 0;
+    padding: 2vw 0;
     width: 96%;
 }
 
@@ -176,7 +292,11 @@ footer span {
     color: crimson;
 }
 
-/* Media queries */
+/**
+ *
+ * Media Queries
+ *
+ */
 
 @media screen and (max-width: 639px) {
     nav {

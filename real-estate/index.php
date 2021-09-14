@@ -3,13 +3,11 @@
 require_once './vendor/autoload.php';
 require_once 'config/config.php';
 
-$db = new config\Database;
-$pisos = $db->getPisos();
+// Getting page url
+$page = $_GET['page'] ?? 'home';
 
-?>
-
-<?php include_once VIEW . 'templates/header.php' ?>
-
-<?php include_once './src/views/templates/main.php' ?>
-
-<?php include_once './src/views/templates/footer.php' ?>
+if ($page === 'login') {
+    include_once CTRL . 'loginPage.php';
+} else {
+    include_once CTRL . 'homePage.php';
+}
