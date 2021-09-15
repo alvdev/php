@@ -20,6 +20,11 @@ html {
     height: 100%;
 }
 
+img {
+    display: block;
+    outline: none
+}
+
 /* width */
 ::-webkit-scrollbar {
     height: 8px;
@@ -70,6 +75,23 @@ body {
     grid-template-rows: auto 1fr auto;
     height: 100%;
 }
+
+/* Login Page */
+
+body.login {
+    grid-template-areas:
+        "nav"
+        "main"
+        "footer"
+    ;
+    grid-template-columns: 1fr;
+}
+
+body.login>* {
+    margin: 0 auto;
+}
+
+/* End Login Page */
 
 h1 {
     font-size: 2rem;
@@ -264,6 +286,17 @@ nav {
 
 .logo a {
     color: black;
+}
+
+.locale {
+    display: flex;
+    gap: .25rem;
+}
+
+.locale button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 main {
