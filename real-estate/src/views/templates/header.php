@@ -11,15 +11,25 @@
     <script src="./public/js/script.js" defer></script>
 </head>
 
-<body>
+<body class="<?= $_GET['page'] ?: 'PEPE' ?>">
 
-    <?php include_once __DIR__ . '/aside.php' ?>
+    <?php
+    if (!isset($_GET['page']) == 'login') {
+        include_once __DIR__ . '/aside.php';
+    }
+    ?>
 
     <nav>
         <div class="logo"><a href="./">idealisto</a></div>
+
+        <form action="./" class="locale" method="post">
+            <button name="lang" value="es"><img src=" ./public/img/locales/es24.png" alt=""></button>
+            <button name="lang" value="en"><img src=" ./public/img/locales/en24.png" alt=""></button>
+        </form>
+
         <div class="btn-group">
             <a href="#" class="btn blue">Add property</a>
-            <a href="#" class="btn">Login</a>
+            <a href="?page=login" class="btn">Login</a>
         </div>
     </nav>
 
