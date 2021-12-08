@@ -1,14 +1,15 @@
 <?php
 
-$id = $_GET['id'] ?? header ('Location: index.php');
+$id = $_GET['id'] ?? header('Location: index.php');
 $errors = [];
 
-function randStr($n) {
+function randStr($n)
+{
     $chars = '0123456780ABCDEFGHIJKLMNOPQRSTUWXYZabcdefghijklmnopqrstuvwxyz';
     $str = '';
 
     for ($i = 0; $i < $n; $i++) {
-        $index = rand(0, strlen($chars) -1);
+        $index = rand(0, strlen($chars) - 1);
         $str .= $chars[$index];
     }
 
@@ -45,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if previous image exists and remove it if it does.
         if ($image['tmp_name']) {
             unlink($product['image']);
-            
+
             // Recursively create upload image directory and put the file in it
             $imagePath = 'images/' . randStr(8) . '/' . $image['name'];
             mkdir(dirname($imagePath), 0777, true);
@@ -63,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $update->execute();
 
-        header ('Location: index.php');
+        header('Location: index.php');
     }
 }
 
@@ -71,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body id="edit-product">
     <nav>
         <a href="index.php">Home</a>
@@ -86,21 +89,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
     <main>
         <h1>Edit product</h1>
-        
-        <?php if ($errors): ?>
-            <div class="alert error">
-                <ul>
-                    <?php foreach ($errors as $error) : ?>
-                        <li><?= $error ?></li>
-                    <?php endforeach ?>
-                </ul>
-            </div>
+
+        <?php if ($errors) : ?>
+        <div class="alert error">
+            <ul>
+                <?php foreach ($errors as $error) : ?>
+                <li><?= $error ?></li>
+                <?php endforeach ?>
+            </ul>
+        </div>
         <?php endif ?>
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="edit-img">
-                <?php if ($product['image']): ?>
-                    <img src="<?= $product['image'] ?>" alt="<?= $product['title'] ?>" height="100">
+                <?php if ($product['image']) : ?>
+                <img src="<?= $product['image'] ?>" alt="<?= $product['title'] ?>" height="100">
                 <?php endif ?>
 
                 <div>
@@ -108,12 +111,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="file" name="image">
                 </div>
             </div>
-            
+
             <div>
                 <label for="title">Product title</label>
                 <input type="text" id="title" name="title" value="<?= $product['title'] ?>">
             </div>
-            
+
             <div>
                 <label for="description">Product description</label>
                 <textarea name="description" id="description"><?= $product['description'] ?></textarea>
@@ -128,4 +131,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </main>
 </body>
+
 </html>
