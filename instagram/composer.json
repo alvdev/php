@@ -1,0 +1,17 @@
+{
+    "name": "alvdev/instagram",
+    "description": "An Instagram practive based of OOP and PHP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "alvdev\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alvdev",
+            "email": "soy@alv.dev"
+        }
+    ],
+    "require": {}
+}
