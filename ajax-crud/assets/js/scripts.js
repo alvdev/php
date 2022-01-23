@@ -6,18 +6,13 @@ console.log(form);
 
 fetch('index.php', {
   method: 'post',
-  body: formData
-})
-  .then(res => res.text())
-  //.then(data => console.log(data))
-
-//
+  body: formData,
+}).then(res => res.text());
 
 const message = document.querySelector('#message');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  console.log('He hecho clic');
   message.textContent = 'Hello world';
   message.classList.toggle('visible');
-})
+});
